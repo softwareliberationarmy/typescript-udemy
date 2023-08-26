@@ -1,7 +1,10 @@
+type CombineInput = number | string;
+type OutputType = 'as-number' | 'as-text';
+
 function combine(
-  input1: number | string,
-  input2: number | string,
-  resultConversion: 'as-number' | 'as-text'
+  input1: CombineInput,
+  input2: CombineInput,
+  resultConversion: OutputType
 ) {
   let result;
   if (
