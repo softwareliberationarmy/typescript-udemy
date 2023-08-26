@@ -41,4 +41,3 @@ if (person.role == Role.ADMIN) {
 else if (person.role == Role.AUTHOR) {
     console.log('is author');
 }
-//# sourceMappingURL=more-complex-types.js.map

@@ -17,4 +17,3 @@ combineValues = add;
 console.log(combineValues(8, 8));
 // let someValue: undefined;
 addAndHandle(10, 20, print);
-//# sourceMappingURL=functions.js.map

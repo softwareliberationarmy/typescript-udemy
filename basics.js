@@ -15,4 +15,3 @@ const printRs = true;
 let phrase = 'Result is...';
 const result = basicAdd(number1, number2, printRs, phrase);
 console.log(result);
-//# sourceMappingURL=basics.js.map
