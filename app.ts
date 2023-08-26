@@ -1,8 +1,17 @@
-const person = {
+const person: {
+    name: string;
+    age: number;
+    hobbies: string[];
+    role: [number,string]; // tuple
+} = {
     name: 'Kerry',
     age: 48,
-    hobbies: ['knitting', 'running']
+    hobbies: ['knitting', 'running'],
+    role: [17, 'developer']
 };
+
+person.role.push('admin');  //warning: still supported
+console.log(person.role);
 
 let favoriteActivities: string[];
 favoriteActivities = ['working out', 'writing code'];
