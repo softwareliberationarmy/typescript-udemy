@@ -1,13 +1,26 @@
-'use strict';
-let userInput;
-let userName;
-userInput = 5;
-userInput = 'Max';
-if (typeof userInput === 'string') {
-  userName = userInput;
+"use strict";
+class Department {
+    constructor(n) {
+        this.employees = [];
+        this.name = n;
+    }
+    describe() {
+        console.log('Department: ' + this.name);
+    }
+    addEmployee(employee) {
+        this.employees.push(employee);
+    }
+    printEmployeeInformation() {
+        console.log(this.employees.length);
+        console.log(this.employees);
+    }
 }
-function generateError(message, code) {
-  throw { message: message, errorCode: code };
-}
-// generateError('An error occurred!', 500);
-console.log('Hello');
+const shipping = new Department('Shipping');
+shipping.addEmployee('Kerry');
+shipping.addEmployee('Dori');
+// shipping.employees[2] = 'Anna';
+shipping.describe();
+shipping.printEmployeeInformation();
+console.log(shipping);
+// const shippingCopy = { name: 'DOPPELGANGER', describe: shipping.describe };
+// shippingCopy.describe();
