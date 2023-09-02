@@ -19,12 +19,42 @@ class Department {
         console.log(this.employees);
     }
 }
-const shipping = new Department('123', 'Shipping');
-shipping.addEmployee('Kerry');
-shipping.addEmployee('Dori');
+class ITDepartment extends Department {
+    constructor(id, admins) {
+        super(id, 'Information Technology'); //must be called before this keyword
+        this.admins = admins;
+    }
+}
+class AccountingDepartment extends Department {
+    constructor(id, reports) {
+        super(id, 'Accounting');
+        this.reports = reports;
+    }
+    addEmployee(name) {
+        if (name === 'Max') {
+            return;
+        }
+        this.employees.push(name);
+    }
+    addReport(text) {
+        this.reports.push(text);
+    }
+    printReports() {
+        console.log(this.reports);
+    }
+}
+// USAGE
+const it = new ITDepartment('123', ['Ira']);
+it.addEmployee('Kerry');
+it.addEmployee('Dori');
 // shipping.employees[2] = 'Anna';
-shipping.describe();
-shipping.printEmployeeInformation();
-console.log(shipping);
+it.describe();
+it.printEmployeeInformation();
+console.log(it);
+const acct = new AccountingDepartment('a1', ['Some report...']);
+acct.addEmployee('Max');
+acct.addEmployee('Manu');
+acct.printEmployeeInformation();
+acct.printReports();
 // const shippingCopy = { name: 'DOPPELGANGER', describe: shipping.describe };
 // shippingCopy.describe();

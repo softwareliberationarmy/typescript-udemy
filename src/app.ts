@@ -1,7 +1,7 @@
 class Department {
   //     private readonly id: string;
   //   name: string;
-  private employees: string[] = [];
+  protected employees: string[] = [];
 
   constructor(private readonly id: string, public name: string) {
     // this.name = n;
@@ -21,17 +21,55 @@ class Department {
   }
 }
 
-const shipping = new Department('123', 'Shipping');
+class ITDepartment extends Department {
+  public admins: string[];
 
-shipping.addEmployee('Kerry');
-shipping.addEmployee('Dori');
+  constructor(id: string, admins: string[]) {
+    super(id, 'Information Technology'); //must be called before this keyword
+    this.admins = admins;
+  }
+}
+
+class AccountingDepartment extends Department {
+  constructor(id: string, private reports: string[]) {
+    super(id, 'Accounting');
+  }
+
+  addEmployee(name: string) {
+    if (name === 'Max') {
+      return;
+    }
+    this.employees.push(name);
+  }
+
+  addReport(text: string) {
+    this.reports.push(text);
+  }
+
+  printReports() {
+    console.log(this.reports);
+  }
+}
+
+// USAGE
+
+const it = new ITDepartment('123', ['Ira']);
+
+it.addEmployee('Kerry');
+it.addEmployee('Dori');
 
 // shipping.employees[2] = 'Anna';
 
-shipping.describe();
-shipping.printEmployeeInformation();
+it.describe();
+it.printEmployeeInformation();
 
-console.log(shipping);
+console.log(it);
+
+const acct = new AccountingDepartment('a1', ['Some report...']);
+acct.addEmployee('Max');
+acct.addEmployee('Manu');
+acct.printEmployeeInformation();
+acct.printReports();
 
 // const shippingCopy = { name: 'DOPPELGANGER', describe: shipping.describe };
 
