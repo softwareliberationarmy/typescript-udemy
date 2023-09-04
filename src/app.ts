@@ -12,7 +12,8 @@ addNumbers = (n1: number, n2: number) => {
 console.log(addNumbers(12, 13));
 
 interface Named {
-  readonly name: string;
+  readonly name?: string;
+  outputName?: string;
 }
 
 interface Greetable extends Named {
@@ -22,16 +23,22 @@ interface Greetable extends Named {
 // can extend multiple interfaces, too
 
 class Person implements Greetable {
-  name: string;
+  name?: string;
   age: number;
 
-  constructor(n: string) {
-    this.name = n;
+  constructor(n?: string) {
+    if (n) {
+      this.name = n;
+    }
     this.age = 30;
   }
 
   greet(phrase: string): void {
-    console.log(`${phrase} ${this.name}`);
+    if (this.name) {
+      console.log(`${phrase} ${this.name}`);
+    } else {
+      console.log(phrase);
+    }
   }
 }
 
@@ -39,7 +46,7 @@ class Person implements Greetable {
 
 let user1: Greetable;
 
-user1 = new Person('Fred');
+user1 = new Person();
 // user1.name = 'Kitty'; //error because of readonly property above
 
 console.log(user1.name);
