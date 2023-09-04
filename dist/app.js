@@ -12,9 +12,6 @@ class Department {
     static createEmployee(name) {
         return { name: name };
     }
-    describe() {
-        console.log(`Department: (${this.id}) : ${this.name}`);
-    }
     addEmployee(employee) {
         this.employees.push(employee);
     }
@@ -28,6 +25,9 @@ class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, 'Information Technology'); //must be called before this keyword
         this.admins = admins;
+    }
+    describe() {
+        console.log(`IT Department - ID: ${this.id}`);
     }
 }
 class AccountingDepartment extends Department {
@@ -63,6 +63,9 @@ class AccountingDepartment extends Department {
     printReports() {
         console.log(this.reports);
     }
+    describe() {
+        console.log(`Accounting Department - ID: ${this.id}`);
+    }
 }
 // ********
 // USAGE
@@ -83,5 +86,6 @@ acct.addEmployee('Max');
 acct.addEmployee('Manu');
 acct.printEmployeeInformation();
 acct.printReports();
+acct.describe();
 // const shippingCopy = { name: 'DOPPELGANGER', describe: shipping.describe };
 // shippingCopy.describe();
