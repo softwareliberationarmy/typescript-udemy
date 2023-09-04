@@ -1,19 +1,29 @@
-interface Person {
+interface Greetable {
   name: string;
-  age: number;
 
   greet(phrase: string): void;
 }
 
-let user1: Person;
+class Person implements Greetable {
+  name: string;
+  age: number;
 
-user1 = {
-  name: 'Fred',
-  age: 37,
+  constructor(n: string) {
+    this.name = n;
+    this.age = 30;
+  }
 
-  greet(phrase: string) {
-    console.log(phrase + ' ' + this.name);
-  },
-};
+  greet(phrase: string): void {
+    console.log(`${phrase} ${this.name}`);
+  }
+}
+
+//interfaces differ from types in that you can only describe the structure of an object
+
+let user1: Greetable;
+
+user1 = new Person('Fred');
+
+console.log(user1);
 
 user1.greet('Hello');
