@@ -6,7 +6,11 @@ class Department {
         //     private readonly id: string;
         //   name: string;
         this.employees = [];
+        console.log('Fiscal Year: ', Department.fiscalYear);
         // this.name = n;
+    }
+    static createEmployee(name) {
+        return { name: name };
     }
     describe() {
         console.log(`Department: (${this.id}) : ${this.name}`);
@@ -19,6 +23,7 @@ class Department {
         console.log(this.employees);
     }
 }
+Department.fiscalYear = 2020;
 class ITDepartment extends Department {
     constructor(id, admins) {
         super(id, 'Information Technology'); //must be called before this keyword
@@ -59,7 +64,11 @@ class AccountingDepartment extends Department {
         console.log(this.reports);
     }
 }
+// ********
 // USAGE
+// ********
+const employee1 = Department.createEmployee('max');
+console.log(employee1, Department.fiscalYear);
 const it = new ITDepartment('123', ['Ira']);
 it.addEmployee('Kerry');
 it.addEmployee('Dori');
