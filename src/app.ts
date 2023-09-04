@@ -57,9 +57,18 @@ class AccountingDepartment extends Department {
     }
   }
 
-  constructor(id: string, private reports: string[]) {
+  private constructor(id: string, private reports: string[]) {
     super(id, 'Accounting');
     this.lastReport = reports[0];
+  }
+
+  private static instance: AccountingDepartment;
+  static getInstance() {
+    if (!AccountingDepartment.instance) {
+      AccountingDepartment.instance = new AccountingDepartment('ACCT', []);
+    }
+
+    return AccountingDepartment.instance;
   }
 
   addEmployee(name: string) {
@@ -102,7 +111,7 @@ it.printEmployeeInformation();
 
 console.log(it);
 
-const acct = new AccountingDepartment('a1', []);
+const acct = AccountingDepartment.getInstance();
 
 acct.mostRecentReport = 'TPS report';
 console.log(acct.mostRecentReport);
@@ -113,6 +122,15 @@ acct.printEmployeeInformation();
 acct.printReports();
 
 acct.describe();
+
+const acct2 = AccountingDepartment.getInstance();
+
+acct.printEmployeeInformation();
+acct.describe();
+
+if (acct == acct2) {
+  console.log('instances are identical');
+}
 
 // const shippingCopy = { name: 'DOPPELGANGER', describe: shipping.describe };
 

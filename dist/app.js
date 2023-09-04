@@ -50,6 +50,12 @@ class AccountingDepartment extends Department {
         this.reports = reports;
         this.lastReport = reports[0];
     }
+    static getInstance() {
+        if (!AccountingDepartment.instance) {
+            AccountingDepartment.instance = new AccountingDepartment('ACCT', []);
+        }
+        return AccountingDepartment.instance;
+    }
     addEmployee(name) {
         if (name === 'Max') {
             return;
@@ -79,7 +85,7 @@ it.addEmployee('Dori');
 it.describe();
 it.printEmployeeInformation();
 console.log(it);
-const acct = new AccountingDepartment('a1', []);
+const acct = AccountingDepartment.getInstance();
 acct.mostRecentReport = 'TPS report';
 console.log(acct.mostRecentReport);
 acct.addEmployee('Max');
@@ -87,5 +93,11 @@ acct.addEmployee('Manu');
 acct.printEmployeeInformation();
 acct.printReports();
 acct.describe();
+const acct2 = AccountingDepartment.getInstance();
+acct.printEmployeeInformation();
+acct.describe();
+if (acct == acct2) {
+    console.log('instances are identical');
+}
 // const shippingCopy = { name: 'DOPPELGANGER', describe: shipping.describe };
 // shippingCopy.describe();
