@@ -37,6 +37,10 @@ const fetchedUserData = {
 //js way
 // console.log(fetchedUserData.job && fetchedUserData.job.title);
 console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+//nullish coalescing
+const nullishData = '';
+const storedData = nullishData !== null && nullishData !== void 0 ? nullishData : 'DEFAULT'; //different from || in that it won't overwrite ''
+console.log(storedData);
 //type checking guard clauses
 // class Car {
 //   drive() {

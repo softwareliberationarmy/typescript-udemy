@@ -75,6 +75,12 @@ const fetchedUserData = {
 // console.log(fetchedUserData.job && fetchedUserData.job.title);
 console.log(fetchedUserData?.job?.title);
 
+//nullish coalescing
+const nullishData = '';
+
+const storedData = nullishData ?? 'DEFAULT'; //different from || in that it won't overwrite ''
+console.log(storedData);
+
 //type checking guard clauses
 // class Car {
 //   drive() {
