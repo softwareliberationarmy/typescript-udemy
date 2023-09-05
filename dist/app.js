@@ -3,6 +3,7 @@
 //   name: string;
 //   privileges: string[];
 // }
+var _a;
 const e1 = {
     name: 'Max',
     privileges: ['create-server'],
@@ -27,6 +28,16 @@ function addCombinables(a, b) {
 }
 const addcombinableresult = addCombinables('Fred', 'Larry');
 addcombinableresult.split(' ');
+//optional chaining
+const fetchedUserData = {
+    id: 'u1',
+    name: 'Max',
+    job: { title: 'CEO', description: 'Runs the company' },
+};
+//js way
+// console.log(fetchedUserData.job && fetchedUserData.job.title);
+console.log((_a = fetchedUserData === null || fetchedUserData === void 0 ? void 0 : fetchedUserData.job) === null || _a === void 0 ? void 0 : _a.title);
+//type checking guard clauses
 // class Car {
 //   drive() {
 //     console.log('Driving...');

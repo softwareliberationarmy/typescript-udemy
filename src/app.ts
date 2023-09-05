@@ -64,6 +64,18 @@ function addCombinables(a: Combinable, b: Combinable) {
 const addcombinableresult = addCombinables('Fred', 'Larry');
 addcombinableresult.split(' ');
 
+//optional chaining
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Max',
+  job: { title: 'CEO', description: 'Runs the company' },
+};
+
+//js way
+// console.log(fetchedUserData.job && fetchedUserData.job.title);
+console.log(fetchedUserData?.job?.title);
+
+//type checking guard clauses
 // class Car {
 //   drive() {
 //     console.log('Driving...');
