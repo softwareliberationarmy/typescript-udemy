@@ -62,3 +62,16 @@ function moveAnimal(animal) {
     console.log('Moving at speed ' + speed);
 }
 moveAnimal({ type: 'bird', flyingSpeed: 100 });
+//type casting
+//first syntax
+// const userInputElement = <HTMLInputElement>(
+//   document.getElementById('user-input')
+// );
+//second syntax (includes ! to guarantee not null)
+// const userInputElement = document.getElementById(
+//   'user-input'
+// )! as HTMLInputElement;  //guarantees value is not null
+const userInputElement = document.getElementById('user-input'); //value might be null
+if (userInputElement) {
+    userInputElement.value = 'Hi there!';
+}
