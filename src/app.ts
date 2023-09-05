@@ -49,6 +49,11 @@ type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
 
+//function overloads
+function addCombinables(a: number, b: number): number;
+function addCombinables(a: string, b: string): string;
+function addCombinables(a: number, b: string): string;
+function addCombinables(a: string, b: number): string;
 function addCombinables(a: Combinable, b: Combinable) {
   if (typeof a === 'string' || typeof b === 'string') {
     return a.toString() + b.toString();
@@ -56,92 +61,97 @@ function addCombinables(a: Combinable, b: Combinable) {
   return a + b;
 }
 
-class Car {
-  drive() {
-    console.log('Driving...');
-  }
-}
+const addcombinableresult = addCombinables('Fred', 'Larry');
+addcombinableresult.split(' ');
 
-class Truck {
-  drive() {
-    console.log('Driving a truck...');
-  }
+// class Car {
+//   drive() {
+//     console.log('Driving...');
+//   }
+// }
 
-  loadCargo(amount: number) {
-    console.log('Loading cargo...' + amount);
-  }
-}
+// class Truck {
+//   drive() {
+//     console.log('Driving a truck...');
+//   }
 
-type Vehicle = Car | Truck;
+//   loadCargo(amount: number) {
+//     console.log('Loading cargo...' + amount);
+//   }
+// }
 
-const v1 = new Car();
-const v2 = new Truck();
+// type Vehicle = Car | Truck;
 
-function useVehicle(vehicle: Vehicle) {
-  vehicle.drive();
-  if (vehicle instanceof Truck) {
-    vehicle.loadCargo(1000);
-  }
-  //instanceof is for classes only, not interfaces
-}
+// const v1 = new Car();
+// const v2 = new Truck();
 
-useVehicle(v1);
-useVehicle(v2);
+// function useVehicle(vehicle: Vehicle) {
+//   vehicle.drive();
+//   if (vehicle instanceof Truck) {
+//     vehicle.loadCargo(1000);
+//   }
+//   //instanceof is for classes only, not interfaces
+// }
 
-//discriminated unions
-interface Bird {
-  type: 'bird'; //<<<<<<<
-  flyingSpeed: number;
-}
+// useVehicle(v1);
+// useVehicle(v2);
 
-interface Horse {
-  type: 'horse'; //<<<<<<<
-  runningSpeed: number;
-}
+// //discriminated unions
+// interface Bird {
+//   type: 'bird'; //<<<<<<<
+//   flyingSpeed: number;
+// }
 
-type Animal = Bird | Horse;
+// interface Horse {
+//   type: 'horse'; //<<<<<<<
+//   runningSpeed: number;
+// }
 
-function moveAnimal(animal: Animal) {
-  let speed: number;
-  switch (animal.type) {
-    case 'bird':
-      speed = animal.flyingSpeed;
-      break;
-    case 'horse':
-      speed = animal.runningSpeed;
-      break;
-  }
-  console.log('Moving at speed ' + speed);
-}
+// type Animal = Bird | Horse;
 
-moveAnimal({ type: 'bird', flyingSpeed: 100 });
+// function moveAnimal(animal: Animal) {
+//   let speed: number;
+//   switch (animal.type) {
+//     case 'bird':
+//       speed = animal.flyingSpeed;
+//       break;
+//     case 'horse':
+//       speed = animal.runningSpeed;
+//       break;
+//   }
+//   console.log('Moving at speed ' + speed);
+// }
 
-//type casting
+// moveAnimal({ type: 'bird', flyingSpeed: 100 });
 
-//first syntax
-// const userInputElement = <HTMLInputElement>(
-//   document.getElementById('user-input')
-// );
-//second syntax (includes ! to guarantee not null)
-// const userInputElement = document.getElementById(
-//   'user-input'
-// )! as HTMLInputElement;  //guarantees value is not null
+// //type casting
 
-const userInputElement = document.getElementById('user-input'); //value might be null
+// //first syntax
+// // const userInputElement = <HTMLInputElement>(
+// //   document.getElementById('user-input')
+// // );
+// //second syntax (includes ! to guarantee not null)
+// // const userInputElement = document.getElementById(
+// //   'user-input'
+// // )! as HTMLInputElement;  //guarantees value is not null
 
-if (userInputElement) {
-  (userInputElement as HTMLInputElement).value = 'Hi there!';
-}
+// const userInputElement = document.getElementById('user-input'); //value might be null
 
-//index properties (for unknown properties)
-interface ErrorContainer {
-  // id: string; //can add other properties as long as type is same as index type (cannot be number, e.g.)
+// if (userInputElement) {
+//   (userInputElement as HTMLInputElement).value = 'Hi there!';
+// }
 
-  //don't know all the properties we need at design time and their names
-  [key: string]: string;
-}
+// //index properties (for unknown properties)
+// interface ErrorContainer {
+//   // id: string; //can add other properties as long as type is same as index type (cannot be number, e.g.)
 
-const errorBag: ErrorContainer = {
-  email: 'Not a valid email!',
-  username: 'Must start with a capital letter',
-};
+//   //don't know all the properties we need at design time and their names
+//   [key: string]: string;
+// }
+
+// const errorBag: ErrorContainer = {
+//   email: 'Not a valid email!',
+//   username: 'Must start with a capital letter',
+// };
+
+// //function overloads

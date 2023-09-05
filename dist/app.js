@@ -25,57 +25,77 @@ function addCombinables(a, b) {
     }
     return a + b;
 }
-class Car {
-    drive() {
-        console.log('Driving...');
-    }
-}
-class Truck {
-    drive() {
-        console.log('Driving a truck...');
-    }
-    loadCargo(amount) {
-        console.log('Loading cargo...' + amount);
-    }
-}
-const v1 = new Car();
-const v2 = new Truck();
-function useVehicle(vehicle) {
-    vehicle.drive();
-    if (vehicle instanceof Truck) {
-        vehicle.loadCargo(1000);
-    }
-    //instanceof is for classes only, not interfaces
-}
-useVehicle(v1);
-useVehicle(v2);
-function moveAnimal(animal) {
-    let speed;
-    switch (animal.type) {
-        case 'bird':
-            speed = animal.flyingSpeed;
-            break;
-        case 'horse':
-            speed = animal.runningSpeed;
-            break;
-    }
-    console.log('Moving at speed ' + speed);
-}
-moveAnimal({ type: 'bird', flyingSpeed: 100 });
-//type casting
-//first syntax
-// const userInputElement = <HTMLInputElement>(
-//   document.getElementById('user-input')
-// );
-//second syntax (includes ! to guarantee not null)
-// const userInputElement = document.getElementById(
-//   'user-input'
-// )! as HTMLInputElement;  //guarantees value is not null
-const userInputElement = document.getElementById('user-input'); //value might be null
-if (userInputElement) {
-    userInputElement.value = 'Hi there!';
-}
-const errorBag = {
-    email: 'Not a valid email!',
-    username: 'Must start with a capital letter',
-};
+const addcombinableresult = addCombinables('Fred', 'Larry');
+addcombinableresult.split(' ');
+// class Car {
+//   drive() {
+//     console.log('Driving...');
+//   }
+// }
+// class Truck {
+//   drive() {
+//     console.log('Driving a truck...');
+//   }
+//   loadCargo(amount: number) {
+//     console.log('Loading cargo...' + amount);
+//   }
+// }
+// type Vehicle = Car | Truck;
+// const v1 = new Car();
+// const v2 = new Truck();
+// function useVehicle(vehicle: Vehicle) {
+//   vehicle.drive();
+//   if (vehicle instanceof Truck) {
+//     vehicle.loadCargo(1000);
+//   }
+//   //instanceof is for classes only, not interfaces
+// }
+// useVehicle(v1);
+// useVehicle(v2);
+// //discriminated unions
+// interface Bird {
+//   type: 'bird'; //<<<<<<<
+//   flyingSpeed: number;
+// }
+// interface Horse {
+//   type: 'horse'; //<<<<<<<
+//   runningSpeed: number;
+// }
+// type Animal = Bird | Horse;
+// function moveAnimal(animal: Animal) {
+//   let speed: number;
+//   switch (animal.type) {
+//     case 'bird':
+//       speed = animal.flyingSpeed;
+//       break;
+//     case 'horse':
+//       speed = animal.runningSpeed;
+//       break;
+//   }
+//   console.log('Moving at speed ' + speed);
+// }
+// moveAnimal({ type: 'bird', flyingSpeed: 100 });
+// //type casting
+// //first syntax
+// // const userInputElement = <HTMLInputElement>(
+// //   document.getElementById('user-input')
+// // );
+// //second syntax (includes ! to guarantee not null)
+// // const userInputElement = document.getElementById(
+// //   'user-input'
+// // )! as HTMLInputElement;  //guarantees value is not null
+// const userInputElement = document.getElementById('user-input'); //value might be null
+// if (userInputElement) {
+//   (userInputElement as HTMLInputElement).value = 'Hi there!';
+// }
+// //index properties (for unknown properties)
+// interface ErrorContainer {
+//   // id: string; //can add other properties as long as type is same as index type (cannot be number, e.g.)
+//   //don't know all the properties we need at design time and their names
+//   [key: string]: string;
+// }
+// const errorBag: ErrorContainer = {
+//   email: 'Not a valid email!',
+//   username: 'Must start with a capital letter',
+// };
+// //function overloads
