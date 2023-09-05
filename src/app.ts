@@ -75,3 +75,27 @@ const numberStorage = new DataStorage<number>();
 // objStorage.addItem({ name: 'Manu' });
 // objStorage.removeItem({ name: 'Max' });
 // console.log(objStorage.getItems());
+
+//Partial type
+interface CourseGoal {
+  title: string;
+  description: string;
+  completeUntil: Date;
+}
+
+function createCourseGoal(
+  title: string,
+  description: string,
+  date: Date
+): CourseGoal {
+  let courseGoal: Partial<CourseGoal> = {};
+  courseGoal.title = title;
+  courseGoal.description = description;
+  courseGoal.completeUntil = date;
+  return courseGoal as CourseGoal;
+}
+
+//Readonly type
+const names: Readonly<string[]> = ['Max', 'Manu', 'Anna'];
+console.log(names);
+// names.push('Fred'); //TS error
