@@ -132,3 +132,16 @@ const userInputElement = document.getElementById('user-input'); //value might be
 if (userInputElement) {
   (userInputElement as HTMLInputElement).value = 'Hi there!';
 }
+
+//index properties (for unknown properties)
+interface ErrorContainer {
+  // id: string; //can add other properties as long as type is same as index type (cannot be number, e.g.)
+
+  //don't know all the properties we need at design time and their names
+  [key: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: 'Not a valid email!',
+  username: 'Must start with a capital letter',
+};
