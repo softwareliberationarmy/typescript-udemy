@@ -28,3 +28,31 @@ function extractAndConvert(obj, key) {
     return 'Value: ' + obj[key];
 }
 extractAndConvert({ name: 'Max' }, 'name');
+class DataStorage {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItems() {
+        return [...this.data];
+    }
+}
+const textStorage = new DataStorage();
+textStorage.addItem('12');
+textStorage.addItem('max');
+textStorage.removeItem('max');
+console.log(textStorage.getItems());
+const numberStorage = new DataStorage();
+// const objStorage = new DataStorage<object>();
+// objStorage.addItem({ name: 'Max' });
+// objStorage.addItem({ name: 'Manu' });
+// objStorage.removeItem({ name: 'Max' });
+// console.log(objStorage.getItems());
