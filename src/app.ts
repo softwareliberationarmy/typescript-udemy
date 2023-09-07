@@ -49,11 +49,41 @@ function ProductLogger(target: any, propertyName: string | Symbol) {
   console.log(propertyName);
 }
 
+function ProductLogger2(
+  target: any,
+  name: string,
+  descriptor: PropertyDescriptor
+) {
+  console.log('Accessor decorator!');
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+
+function ProductLogger3(
+  target: any,
+  name: string | Symbol,
+  descriptor: PropertyDescriptor
+) {
+  console.log('Method decorator!');
+  console.log(target);
+  console.log(name);
+  console.log(descriptor);
+}
+
+function ProductLogger4(target: any, name: string | Symbol, position: number) {
+  console.log('Param decorator!');
+  console.log(target);
+  console.log(name);
+  console.log(position);
+}
+
 class Product {
   @ProductLogger
   title: string;
   private _price: number;
 
+  @ProductLogger2
   set price(val: number) {
     if (val > 0) {
       this._price = val;
@@ -65,7 +95,8 @@ class Product {
     this._price = p;
   }
 
-  getPriceWithTax(tax: number) {
+  @ProductLogger3
+  getPriceWithTax(@ProductLogger4 tax: number) {
     return this._price * (1 + tax);
   }
 }
