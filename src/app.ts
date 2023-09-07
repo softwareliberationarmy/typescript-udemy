@@ -1,10 +1,12 @@
 //decorator is a function you apply to a class in a certain way
-function Logger(ctor: Function) {
-  console.log('logging');
-  console.log(ctor);
+function Logger(logString: string) {
+  return function (ctor: Function) {
+    console.log(logString);
+    console.log(ctor);
+  };
 }
 
-@Logger
+@Logger('LOGGING - PERSON')
 class DecoratorPerson {
   name = 'Max';
 

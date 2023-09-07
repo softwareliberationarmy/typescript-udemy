@@ -6,9 +6,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 //decorator is a function you apply to a class in a certain way
-function Logger(ctor) {
-    console.log('logging');
-    console.log(ctor);
+function Logger(logString) {
+    return function (ctor) {
+        console.log(logString);
+        console.log(ctor);
+    };
 }
 let DecoratorPerson = class DecoratorPerson {
     constructor() {
@@ -17,7 +19,7 @@ let DecoratorPerson = class DecoratorPerson {
     }
 };
 DecoratorPerson = __decorate([
-    Logger
+    Logger('LOGGING - PERSON')
 ], DecoratorPerson);
 console.log('here we go');
 const p = new DecoratorPerson();
