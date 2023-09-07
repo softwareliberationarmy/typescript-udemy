@@ -210,3 +210,6 @@ courseForm.addEventListener('submit', (event) => {
 
   console.log(createdCourse);
 });
+
+//similar to typestack/class-validator
+
