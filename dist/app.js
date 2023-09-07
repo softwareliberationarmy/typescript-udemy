@@ -52,18 +52,22 @@ function ProductLogger(target, propertyName) {
     console.log(target);
     console.log(propertyName);
 }
+//property accessor
 function ProductLogger2(target, name, descriptor) {
     console.log('Accessor decorator!');
     console.log(target);
     console.log(name);
     console.log(descriptor);
+    return {};
 }
+//method accessors
 function ProductLogger3(target, name, descriptor) {
     console.log('Method decorator!');
     console.log(target);
     console.log(name);
     console.log(descriptor);
 }
+//parameter accessor
 function ProductLogger4(target, name, position) {
     console.log('Param decorator!');
     console.log(target);
@@ -94,3 +98,29 @@ __decorate([
     ProductLogger3,
     __param(0, ProductLogger4)
 ], Product.prototype, "getPriceWithTax", null);
+function Autobind(_, _2, descriptor) {
+    const originalMethod = descriptor.value;
+    const adjustedDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get() {
+            const boundFn = originalMethod.bind(this);
+            return boundFn;
+        },
+    };
+    return adjustedDescriptor;
+}
+class Printer {
+    constructor() {
+        this.message = 'This works!';
+    }
+    showMessage() {
+        console.log(this.message);
+    }
+}
+__decorate([
+    Autobind
+], Printer.prototype, "showMessage", null);
+const pr = new Printer();
+const button = document.querySelector('button');
+button.addEventListener('click', pr.showMessage);
