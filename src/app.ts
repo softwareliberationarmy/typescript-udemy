@@ -11,13 +11,19 @@ function Logger(logString: string) {
 function WithTemplate(template: string, hookId: string) {
   console.log('TEMPLATE FACTORY');
 
-  return function (constructor: any) {
-    const hookEl = document.getElementById(hookId);
-    const p = new constructor();
-    if (hookEl) {
-      hookEl.innerHTML = template;
-      hookEl.querySelector('h1')!.textContent = p.name;
-    }
+  return function <T extends { new (...args: any[]): { name: string } }>(
+    ctor: T
+  ) {
+    return class extends ctor {
+      constructor(..._: any[]) {
+        super();
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+          hookEl.innerHTML = template;
+          hookEl.querySelector('h1')!.textContent = this.name;
+        }
+      }
+    };
   };
 }
 
@@ -34,12 +40,10 @@ class DecoratorPerson {
 console.log('here we go');
 
 const p = new DecoratorPerson();
-
 console.log(p);
 
-const p2 = new DecoratorPerson();
-
-console.log(p2);
+// const p2 = new DecoratorPerson();
+// console.log(p2);
 
 // ---
 

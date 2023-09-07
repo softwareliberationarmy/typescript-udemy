@@ -18,13 +18,17 @@ function Logger(logString) {
 }
 function WithTemplate(template, hookId) {
     console.log('TEMPLATE FACTORY');
-    return function (constructor) {
-        const hookEl = document.getElementById(hookId);
-        const p = new constructor();
-        if (hookEl) {
-            hookEl.innerHTML = template;
-            hookEl.querySelector('h1').textContent = p.name;
-        }
+    return function (ctor) {
+        return class extends ctor {
+            constructor(..._) {
+                super();
+                const hookEl = document.getElementById(hookId);
+                if (hookEl) {
+                    hookEl.innerHTML = template;
+                    hookEl.querySelector('h1').textContent = this.name;
+                }
+            }
+        };
     };
 }
 let DecoratorPerson = class DecoratorPerson {
@@ -40,8 +44,8 @@ DecoratorPerson = __decorate([
 console.log('here we go');
 const p = new DecoratorPerson();
 console.log(p);
-const p2 = new DecoratorPerson();
-console.log(p2);
+// const p2 = new DecoratorPerson();
+// console.log(p2);
 // ---
 function ProductLogger(target, propertyName) {
     console.log('Property decorator!');
